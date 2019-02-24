@@ -1,0 +1,15 @@
+<h2>Suburbs within 4km range</h2>
+<button (click)="closeRangePanel()"><i class="far fa-times-circle"></i></button>
+<div class="list" >
+  <div class="busy" *ngIf="_isBusy"><div class="lds-ripple"><div></div><div></div></div></div>
+    <div class="header">
+      <div class="name">Name</div>
+      <div>Post Code</div>
+      <div>State</div>
+    </div>
+    <div class="item" *ngFor="let _item of _rangeList" >
+      <div class="name">{{_item.name}}</div>
+      <div class="postcode">{{_item.postcode}}</div>
+      <div class="state">{{_item.state.name}}</div>
+    </div>
+  </div>

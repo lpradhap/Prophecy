@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <div class="header-wrapper">
+    <div class="logo"><img src="./../assets/images/logo.png" /></div>
+    <h1>Postcode Search</h1>
+  </div>
+  <div class="main-search-block">
+    <div class="control">
+      <input type="number" min="1" max="9999" placeholder="Please enter postcode" [formControl]="_searchControl" />
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="list-wrapper" *ngIf="isListEnabled()">
+      <div class="list">
+        <div class="header">
+          <div class="name">Name</div>
+          <div>Post Code</div>
+          <div>State</div>
+        </div>
+        <div class="item" [ngClass]="{'active': _item === _selectedPostCode }" *ngFor="let _item of _postCodeList"
+          (click)="postCodeSelected(_item)">
+          <div class="name">{{_item.name}}</div>
+          <div class="postcode">{{_item.postcode}}</div>
+          <div class="state">{{_item.state.name}}</div>
+        </div>
+      </div>
+
+      <!-- <div *ngIf="!isListEnabled()">Search Australian postcode</div> -->
+    </div>
+    <div class="list-wrapper" *ngIf="isInvalidPostCode()">
+      <div class="error-info">Invalid postcode</div>
+    </div>
+
+    <div class="range-panel" *ngIf="isRangeSelected()" [ngClass]="{'active': isRangeSelected()}">
+      <app-range-list [postCode]="_selectedPostCode" (clearRange)="clearRangePanel($event)"></app-range-list>
+    </div>
+  </div>
+
+</div>
